@@ -54,6 +54,15 @@ const initialProjects: Project[] = [
         liveUrl: 'https://okulrehber-185961838379.us-west1.run.app',
     },
     {
+        iconName: 'DeskIcon',
+        iconBgColor: 'bg-orange-500',
+        title: 'Classmate Creator',
+        subtitle: '9. Sınıf İngilizce İçerik Üreticisi',
+        description: '9. Sınıf İngilizce dersi için öğrencilerin birbirlerini tanımalarına yönelik pratik yapabilecekleri, müfredata uygun içerikler oluşturan dijital bir araç.',
+        tags: ["Eğitim", "İngilizce", "9. Sınıf", "Gemini API"],
+        liveUrl: 'https://classmate-creator-9th-grade-english-185961838379.us-west1.run.app',
+    },
+    {
         iconName: 'StarIcon',
         iconBgColor: 'bg-red-600',
         title: "Atatürk'ün Hayatı",
@@ -366,13 +375,13 @@ const App: React.FC = () => {
 
     useEffect(() => {
         try {
-            // Using v6 to force update the initial projects list
-            const storedProjects = localStorage.getItem('portfolioProjects_v6');
+            // Using v7 to force update the initial projects list
+            const storedProjects = localStorage.getItem('portfolioProjects_v7');
             if (storedProjects) {
                 setProjects(JSON.parse(storedProjects));
             } else {
                 setProjects(initialProjects);
-                localStorage.setItem('portfolioProjects_v6', JSON.stringify(initialProjects));
+                localStorage.setItem('portfolioProjects_v7', JSON.stringify(initialProjects));
             }
         } catch (error) {
             console.error("Failed to parse projects from localStorage", error);
@@ -382,7 +391,7 @@ const App: React.FC = () => {
 
     useEffect(() => {
         if (projects.length > 0) {
-           localStorage.setItem('portfolioProjects_v6', JSON.stringify(projects));
+           localStorage.setItem('portfolioProjects_v7', JSON.stringify(projects));
         }
     }, [projects]);
     
