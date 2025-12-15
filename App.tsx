@@ -64,6 +64,15 @@ const initialProjects: Project[] = [
     },
     {
         iconName: 'StarIcon',
+        iconBgColor: 'bg-rose-600',
+        title: 'Atatürk Köşesi: Hikayeler',
+        subtitle: 'Dijital Hikaye Kütüphanesi',
+        description: 'Öğrencilere Atatürk sevgisini aşılamak ve Cumhuriyet tarihini öğretmek amacıyla hazırlanan; görsel, işitsel ve metinsel içeriklerin harmanlandığı dijital hikaye anlatıcılığı uygulaması.',
+        tags: ["Eğitim", "Tarih", "Atatürk", "Hikaye"],
+        liveUrl: 'https://atat-rk-k-esi-hikayeler-185961838379.us-west1.run.app',
+    },
+    {
+        iconName: 'StarIcon',
         iconBgColor: 'bg-red-600',
         title: "Atatürk'ün Hayatı",
         subtitle: 'Dijital İz Projesi',
@@ -375,13 +384,13 @@ const App: React.FC = () => {
 
     useEffect(() => {
         try {
-            // Using v7 to force update the initial projects list
-            const storedProjects = localStorage.getItem('portfolioProjects_v7');
+            // Using v8 to force update the initial projects list
+            const storedProjects = localStorage.getItem('portfolioProjects_v8');
             if (storedProjects) {
                 setProjects(JSON.parse(storedProjects));
             } else {
                 setProjects(initialProjects);
-                localStorage.setItem('portfolioProjects_v7', JSON.stringify(initialProjects));
+                localStorage.setItem('portfolioProjects_v8', JSON.stringify(initialProjects));
             }
         } catch (error) {
             console.error("Failed to parse projects from localStorage", error);
@@ -391,7 +400,7 @@ const App: React.FC = () => {
 
     useEffect(() => {
         if (projects.length > 0) {
-           localStorage.setItem('portfolioProjects_v7', JSON.stringify(projects));
+           localStorage.setItem('portfolioProjects_v8', JSON.stringify(projects));
         }
     }, [projects]);
     
