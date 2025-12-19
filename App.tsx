@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
     iconMap,
     GithubIcon, 
@@ -7,8 +7,7 @@ import {
     InstagramIcon,
     EditIcon,
     TrashIcon,
-    PlusIcon,
-    StarIcon
+    PlusIcon
 } from './components/Icons';
 
 // --- Type Definitions ---
@@ -99,16 +98,40 @@ const initialProjects: Project[] = [
 
 // --- Sub-components ---
 
+const FloatingParticles: React.FC = () => {
+    return (
+        <div className="fixed inset-0 pointer-events-none -z-5 overflow-hidden">
+            {[...Array(15)].map((_, i) => (
+                <div
+                    key={i}
+                    className="floating-particle"
+                    style={{
+                        width: Math.random() * 6 + 'px',
+                        height: Math.random() * 6 + 'px',
+                        left: Math.random() * 100 + '%',
+                        top: Math.random() * 100 + '%',
+                        animationDelay: Math.random() * 10 + 's',
+                        animationDuration: (Math.random() * 10 + 10) + 's',
+                        opacity: Math.random() * 0.3 + 0.1
+                    }}
+                />
+            ))}
+        </div>
+    );
+};
+
 const BackgroundBlobs: React.FC = () => (
     <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-        <div className="absolute top-0 -left-10 w-72 md:w-96 h-72 md:h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
-        <div className="absolute top-10 -right-10 w-72 md:w-96 h-72 md:h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-10 left-10 w-72 md:w-96 h-72 md:h-96 bg-emerald-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-4000"></div>
+        <div className="absolute inset-0 mesh-grid opacity-30"></div>
+        <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] bg-indigo-600/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob"></div>
+        <div className="absolute top-[20%] -right-[10%] w-[40%] h-[40%] bg-purple-600/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-[10%] left-[20%] w-[45%] h-[45%] bg-emerald-600/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-4000"></div>
+        <div className="absolute top-[40%] left-[40%] w-[30%] h-[30%] bg-rose-600/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-6000"></div>
     </div>
 );
 
 const Header: React.FC = () => (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-slate-950/70 backdrop-blur-xl">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-slate-950/40 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-20 flex justify-between items-center">
             <div className="flex items-center gap-3">
                 <div className="w-8 h-8 md:w-10 md:h-10 accent-gradient rounded-lg md:rounded-xl flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20 text-sm md:text-base">
@@ -126,7 +149,7 @@ const Header: React.FC = () => (
 
 const Hero: React.FC = () => (
     <section className="min-h-screen flex flex-col justify-center items-center px-4 md:px-8 pt-20 text-center">
-        <div className="max-w-4xl w-full space-y-6 md:space-y-10">
+        <div className="max-w-4xl w-full space-y-6 md:space-y-10 relative">
             <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-[1.1] md:leading-none">
                 Eğitimi <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Yapay Zeka</span> ile Şekillendiriyorum
             </h1>
@@ -150,7 +173,7 @@ const ProjectCard: React.FC<{ project: Project; isAdmin: boolean; onEdit: any; o
     const isFeatured = project.featured;
     
     return (
-        <div className={`glass-card group rounded-[2rem] md:rounded-[2.5rem] overflow-hidden flex flex-col relative transition-all duration-500 hover:-translate-y-1 md:hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/10 ${isFeatured ? 'md:col-span-2' : ''}`}>
+        <div className={`glass-card group rounded-[2rem] md:rounded-[2.5rem] overflow-hidden flex flex-col relative transition-all duration-500 hover:-translate-y-1 md:hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/20 ${isFeatured ? 'md:col-span-2' : ''}`}>
              {isAdmin && (
                 <div className="absolute top-4 right-4 md:top-6 md:right-6 flex gap-2 z-20">
                     <button onClick={() => onEdit(project)} className="p-2 bg-indigo-500/20 text-indigo-400 rounded-xl hover:bg-indigo-500 hover:text-white transition-all">
@@ -344,7 +367,7 @@ const App: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [projectToEdit, setProjectToEdit] = useState<Project | null>(null);
 
-    const STORAGE_KEY = 'can_portfolio_responsive_v2';
+    const STORAGE_KEY = 'can_portfolio_animated_v1';
 
     useEffect(() => {
         const stored = localStorage.getItem(STORAGE_KEY);
@@ -383,8 +406,9 @@ const App: React.FC = () => {
     return (
         <div className="min-h-screen text-slate-100 selection:bg-indigo-500/30 overflow-x-hidden">
             <BackgroundBlobs />
+            <FloatingParticles />
             <Header />
-            <main>
+            <main className="relative z-10">
                 <Hero />
                 <Projects 
                     projects={projects} 
