@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { 
     iconMap,
     GithubIcon, 
@@ -158,54 +158,76 @@ const Window: React.FC<{
     </div>
 );
 
-// --- Mini Game: Minesweeper Lite ---
-const Minesweeper: React.FC = () => {
-    const size = 8;
-    const [mines, setMines] = useState<number[]>([]);
-    const [revealed, setRevealed] = useState<boolean[]>([]);
-    const [gameOver, setGameOver] = useState<boolean>(false);
+// --- Classic "Starfield" Screensaver ---
+const StarfieldScreensaver: React.FC<{ onExit: () => void }> = ({ onExit }) => {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
 
-    const initGame = useCallback(() => {
-        const newMines: number[] = [];
-        while (newMines.length < 10) {
-            const r = Math.floor(Math.random() * (size * size));
-            if (!newMines.includes(r)) newMines.push(r);
-        }
-        setMines(newMines);
-        setRevealed(new Array(size * size).fill(false));
-        setGameOver(false);
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let w = (canvas.width = window.innerWidth);
+        let h = (canvas.height = window.innerHeight);
+
+        const stars = Array.from({ length: 400 }, () => ({
+            x: Math.random() * w - w / 2,
+            y: Math.random() * h - h / 2,
+            z: Math.random() * w,
+        }));
+
+        let animationFrame: number;
+        const draw = () => {
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, w, h);
+
+            const cx = w / 2;
+            const cy = h / 2;
+
+            stars.forEach((s) => {
+                s.z -= 4; // speed
+                if (s.z <= 0) {
+                    s.z = w;
+                    s.x = Math.random() * w - w / 2;
+                    s.y = Math.random() * h - h / 2;
+                }
+
+                const k = 128 / s.z;
+                const px = s.x * k + cx;
+                const py = s.y * k + cy;
+
+                if (px >= 0 && px <= w && py >= 0 && py <= h) {
+                    const size = (1 - s.z / w) * 3;
+                    const shade = Math.floor((1 - s.z / w) * 255);
+                    ctx.fillStyle = `rgb(${shade}, ${shade}, ${shade})`;
+                    ctx.fillRect(px, py, size, size);
+                }
+            });
+
+            animationFrame = requestAnimationFrame(draw);
+        };
+
+        const handleResize = () => {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        };
+
+        window.addEventListener('resize', handleResize);
+        draw();
+
+        return () => {
+            cancelAnimationFrame(animationFrame);
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
-    useEffect(() => { initGame(); }, [initGame]);
-
-    const handleClick = (idx: number) => {
-        if (gameOver || revealed[idx]) return;
-        const newRevealed = [...revealed];
-        newRevealed[idx] = true;
-        setRevealed(newRevealed);
-        if (mines.includes(idx)) {
-            setGameOver(true);
-            alert("BOM! Kaybettiniz.");
-        }
-    };
-
     return (
-        <div className="flex flex-col items-center gap-4">
-            <div className="win-inset p-1 bg-black grid grid-cols-8 gap-px">
-                {new Array(size * size).fill(null).map((_, i) => (
-                    <div 
-                        key={i} 
-                        onClick={() => handleClick(i)}
-                        className={`w-6 h-6 md:w-8 md:h-8 flex items-center justify-center cursor-pointer select-none
-                        ${revealed[i] ? 'bg-gray-300' : 'win-outset hover:bg-gray-200'}
-                        `}
-                    >
-                        {revealed[i] && (mines.includes(i) ? '💣' : '')}
-                    </div>
-                ))}
-            </div>
-            <button onClick={initGame} className="win-outset px-4 py-1 text-xs font-bold">Yeniden Başlat</button>
-        </div>
+        <canvas
+            ref={canvasRef}
+            className="fixed inset-0 z-[5000] cursor-none"
+            onClick={onExit}
+        />
     );
 };
 
@@ -277,10 +299,10 @@ const App: React.FC = () => {
     const [isStartOpen, setIsStartOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [editingProject, setEditingProject] = useState<Project | null>(null);
-    const [isGameOpen, setIsGameOpen] = useState(false);
+    const [isScreensaverActive, setIsScreensaverActive] = useState(false);
     const [isInfoOpen, setIsInfoOpen] = useState(true);
 
-    const STORAGE_KEY = 'can_portfolio_retro_v3';
+    const STORAGE_KEY = 'can_portfolio_retro_v5';
 
     useEffect(() => {
         const stored = localStorage.getItem(STORAGE_KEY);
@@ -288,10 +310,11 @@ const App: React.FC = () => {
         
         const handleKey = (e: KeyboardEvent) => {
             if (e.ctrlKey && e.altKey && e.key === 'p') setIsAdmin(prev => !prev);
+            if (isScreensaverActive) setIsScreensaverActive(false);
         };
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
-    }, []);
+    }, [isScreensaverActive]);
 
     useEffect(() => {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
@@ -304,10 +327,13 @@ const App: React.FC = () => {
 
     return (
         <div className="min-h-screen relative pb-10">
+            {/* Screensaver Layer */}
+            {isScreensaverActive && <StarfieldScreensaver onExit={() => setIsScreensaverActive(false)} />}
+
             {/* Desktop Layer */}
             <div className="fixed top-0 left-0 p-4 grid grid-cols-1 w-20 gap-4 z-0">
                 <DesktopIcon icon="directory_open_file_mydocs-4" label="Projelerim" onClick={() => scrollToSection('projects')} />
-                <DesktopIcon icon="game_freecell-0" label="Mayın Tarlası" onClick={() => setIsGameOpen(true)} />
+                <DesktopIcon icon="monitor_gear-0" label="Ekran Koruyucu" onClick={() => setIsScreensaverActive(true)} />
                 <DesktopIcon icon="computer_explorer-5" label="Hakkımda" onClick={() => setIsInfoOpen(true)} />
                 <DesktopIcon icon="envelope_closed-0" label="İletişim" onClick={() => setIsStartOpen(true)} />
             </div>
@@ -380,7 +406,7 @@ const App: React.FC = () => {
                 </section>
             </div>
 
-            {/* Minimized Info Window (Status Widget style) */}
+            {/* Minimized Info Window */}
             {isInfoOpen && (
                 <div className="fixed bottom-[35px] right-2 z-[900] w-64 md:w-72">
                     <Window title="Sistem Durumu" onClose={() => setIsInfoOpen(false)} compact>
@@ -394,16 +420,6 @@ const App: React.FC = () => {
                                 <p className="text-[9px] text-blue-700 italic mt-1 truncate">Online & Hazır</p>
                             </div>
                         </div>
-                    </Window>
-                </div>
-            )}
-
-            {/* Game Window */}
-            {isGameOpen && (
-                <div className="fixed inset-0 z-[1500] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-black/20" onClick={() => setIsGameOpen(false)}></div>
-                    <Window title="Mayın Tarlası v1.0" onClose={() => setIsGameOpen(false)} className="max-w-xs relative">
-                        <Minesweeper />
                     </Window>
                 </div>
             )}
