@@ -333,7 +333,8 @@ const App: React.FC = () => {
             {/* Desktop Layer */}
             <div className="fixed top-0 left-0 p-4 grid grid-cols-1 w-20 gap-4 z-0">
                 <DesktopIcon icon="directory_open_file_mydocs-4" label="Projelerim" onClick={() => scrollToSection('projects')} />
-                <DesktopIcon icon="monitor_gear-0" label="Ekran Koruyucu" onClick={() => setIsScreensaverActive(true)} />
+                <DesktopIcon icon="multimedia-2" label="YouTube" onClick={() => window.open('https://www.youtube.com/@canhoca17', '_blank')} />
+                <DesktopIcon icon="display_properties-0" label="Ekran Koruyucu" onClick={() => setIsScreensaverActive(true)} />
                 <DesktopIcon icon="computer_explorer-5" label="Hakkımda" onClick={() => setIsInfoOpen(true)} />
                 <DesktopIcon icon="envelope_closed-0" label="İletişim" onClick={() => setIsStartOpen(true)} />
             </div>
