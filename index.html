@@ -3,102 +3,151 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Can Akalın | Portfolio</title>
+    <title>Can Akalın | Portfolio OS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=VT323&family=Space+Mono:wght@400;700&display=swap');
       
       :root {
-        --bg-primary: #020617;
-        --accent: #6366f1;
+        --win-bg: #c0c0c0;
+        --win-teal: #008080;
+        --win-blue: #000080;
+        --win-blue-light: #1084d0;
+        --win-border-light: #ffffff;
+        --win-border-dark: #808080;
+        --win-border-darkest: #000000;
       }
 
       body {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        background-color: var(--bg-primary);
-        color: #f8fafc;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--win-teal);
+        color: #000;
+        margin: 0;
+        overflow-x: hidden;
       }
 
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #020617;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1e293b;
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #334155;
+      /* Win98 3D Borders */
+      .win-outset {
+        border-top: 2px solid var(--win-border-light);
+        border-left: 2px solid var(--win-border-light);
+        border-bottom: 2px solid var(--win-border-darkest);
+        border-right: 2px solid var(--win-border-darkest);
+        box-shadow: inset 1px 1px var(--win-border-light), inset -1px -1px var(--win-border-dark);
+        background: var(--win-bg);
       }
 
-      .glass-card {
-        background: rgba(15, 23, 42, 0.6);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+      .win-inset {
+        border-top: 2px solid var(--win-border-dark);
+        border-left: 2px solid var(--win-border-dark);
+        border-bottom: 2px solid var(--win-border-light);
+        border-right: 2px solid var(--win-border-light);
+        background: #fff;
       }
 
-      .text-gradient {
-        background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      .win-titlebar {
+        background: linear-gradient(90deg, var(--win-blue), var(--win-blue-light));
+        color: white;
+        padding: 3px 6px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 13px;
+        letter-spacing: 0.5px;
       }
 
-      .accent-gradient {
-        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      .win-btn {
+        width: 16px;
+        height: 14px;
+        background: var(--win-bg);
+        border: 1px solid var(--win-border-light);
+        border-right-color: var(--win-border-darkest);
+        border-bottom-color: var(--win-border-darkest);
+        box-shadow: inset 1px 1px white, inset -1px -1px #808080;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: black;
+        cursor: pointer;
       }
 
-      /* Moving Background Effects */
-      @keyframes blob {
-        0% { transform: translate(0px, 0px) scale(1); }
-        33% { transform: translate(50px, -80px) scale(1.2); }
-        66% { transform: translate(-40px, 40px) scale(0.8); }
-        100% { transform: translate(0px, 0px) scale(1); }
-      }
-      
-      @keyframes float {
-        0% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
-        50% { transform: translateY(-100px) rotate(180deg); opacity: 0.5; }
-        100% { transform: translateY(-200px) rotate(360deg); opacity: 0; }
+      .win-btn:active {
+        border: 1px solid var(--win-border-darkest);
+        border-right-color: var(--win-border-light);
+        border-bottom-color: var(--win-border-light);
+        box-shadow: none;
+        padding-top: 1px;
+        padding-left: 1px;
       }
 
-      @keyframes pulse-bg {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
+      /* Desktop Icon */
+      .desktop-icon {
+        width: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 8px;
+        cursor: pointer;
+        border: 1px solid transparent;
+      }
+      .desktop-icon:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .desktop-icon span {
+        color: white;
+        text-shadow: 1px 1px #000;
+        font-size: 12px;
+        text-align: center;
+        background: transparent;
+        padding: 1px 4px;
+      }
+      .desktop-icon:active span {
+        background: var(--win-blue);
       }
 
-      .animate-blob {
-        animation: blob 12s infinite alternate ease-in-out;
-      }
-      .animation-delay-2000 {
-        animation-delay: 2s;
-      }
-      .animation-delay-4000 {
-        animation-delay: 4s;
-      }
-      .animation-delay-6000 {
-        animation-delay: 6s;
+      /* Taskbar */
+      .taskbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background: var(--win-bg);
+        border-top: 2px solid var(--win-border-light);
+        display: flex;
+        align-items: center;
+        padding: 2px;
+        gap: 4px;
+        z-index: 1000;
       }
 
-      .floating-particle {
+      .start-btn {
+        height: 24px;
+        padding: 0 6px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-weight: bold;
+        font-size: 13px;
+        box-shadow: inset 1.5px 1.5px #fff, inset -1.5px -1.5px #808080;
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+      }
+
+      /* Screensaver Effect */
+      @keyframes float-icon {
+        from { transform: translate(0, 0); }
+        to { transform: translate(100px, 100px); }
+      }
+      .star {
         position: absolute;
+        width: 2px;
+        height: 2px;
         background: white;
         border-radius: 50%;
-        pointer-events: none;
-        animation: float 15s infinite linear;
-      }
-
-      .mesh-grid {
-        background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-        background-size: 40px 40px;
-      }
-
-      .moving-mesh {
-        background: linear-gradient(45deg, #020617, #0f172a, #020617);
-        background-size: 400% 400%;
-        animation: pulse-bg 15s infinite ease-in-out;
+        opacity: 0.5;
       }
     </style>
   <script type="importmap">
@@ -111,7 +160,7 @@
 }
 </script>
 </head>
-  <body class="overflow-x-hidden moving-mesh">
+  <body class="moving-mesh">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
