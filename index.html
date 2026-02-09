@@ -3,164 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Can Akalın | Portfolio OS</title>
+    <title>Can Akalın | Aether 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap" rel="stylesheet">
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=VT323&family=Space+Mono:wght@400;700&display=swap');
-      
       :root {
-        --win-bg: #c0c0c0;
-        --win-teal: #008080;
-        --win-blue: #000080;
-        --win-blue-light: #1084d0;
-        --win-border-light: #ffffff;
-        --win-border-dark: #808080;
-        --win-border-darkest: #000000;
+        --bg-deep: #030303;
+        --accent: #6366f1;
       }
 
       body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: var(--win-teal);
-        color: #000;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: var(--bg-deep);
+        color: #fff;
         margin: 0;
         overflow-x: hidden;
       }
 
-      /* Win98 3D Borders */
-      .win-outset {
-        border-top: 2px solid var(--win-border-light);
-        border-left: 2px solid var(--win-border-light);
-        border-bottom: 2px solid var(--win-border-darkest);
-        border-right: 2px solid var(--win-border-darkest);
-        box-shadow: inset 1px 1px var(--win-border-light), inset -1px -1px var(--win-border-dark);
-        background: var(--win-bg);
-      }
-
-      .win-inset {
-        border-top: 2px solid var(--win-border-dark);
-        border-left: 2px solid var(--win-border-dark);
-        border-bottom: 2px solid var(--win-border-light);
-        border-right: 2px solid var(--win-border-light);
-        background: #fff;
-      }
-
-      .win-titlebar {
-        background: linear-gradient(90deg, var(--win-blue), var(--win-blue-light));
-        color: white;
-        padding: 3px 6px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-weight: bold;
-        font-size: 13px;
-        letter-spacing: 0.5px;
-      }
-
-      .win-btn {
-        width: 16px;
-        height: 14px;
-        background: var(--win-bg);
-        border: 1px solid var(--win-border-light);
-        border-right-color: var(--win-border-darkest);
-        border-bottom-color: var(--win-border-darkest);
-        box-shadow: inset 1px 1px white, inset -1px -1px #808080;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 10px;
-        color: black;
-        cursor: pointer;
-      }
-
-      .win-btn:active {
-        border: 1px solid var(--win-border-darkest);
-        border-right-color: var(--win-border-light);
-        border-bottom-color: var(--win-border-light);
-        box-shadow: none;
-        padding-top: 1px;
-        padding-left: 1px;
-      }
-
-      /* Desktop Icon */
-      .desktop-icon {
-        width: 80px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-        padding: 8px;
-        cursor: pointer;
-        border: 1px solid transparent;
-      }
-      .desktop-icon:hover {
-        background: rgba(255, 255, 255, 0.1);
-      }
-      .desktop-icon span {
-        color: white;
-        text-shadow: 1px 1px #000;
-        font-size: 12px;
-        text-align: center;
-        background: transparent;
-        padding: 1px 4px;
-      }
-      .desktop-icon:active span {
-        background: var(--win-blue);
-      }
-
-      /* Taskbar */
-      .taskbar {
+      .nebula-bg {
         position: fixed;
-        bottom: 0;
+        top: 0;
         left: 0;
-        right: 0;
-        height: 30px;
-        background: var(--win-bg);
-        border-top: 2px solid var(--win-border-light);
-        display: flex;
-        align-items: center;
-        padding: 2px;
-        gap: 4px;
-        z-index: 1000;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #030303 100%);
       }
 
-      .start-btn {
-        height: 24px;
-        padding: 0 6px;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        font-weight: bold;
-        font-size: 13px;
-        box-shadow: inset 1.5px 1.5px #fff, inset -1.5px -1.5px #808080;
-        border-right: 1px solid #000;
-        border-bottom: 1px solid #000;
-      }
-
-      /* Screensaver Effect */
-      @keyframes float-icon {
-        from { transform: translate(0, 0); }
-        to { transform: translate(100px, 100px); }
-      }
-      .star {
+      .blob {
         position: absolute;
-        width: 2px;
-        height: 2px;
-        background: white;
+        width: 600px;
+        height: 600px;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(244, 63, 94, 0.05) 100%);
+        filter: blur(100px);
         border-radius: 50%;
-        opacity: 0.5;
+        z-index: -1;
+        animation: float 20s infinite alternate;
+      }
+
+      @keyframes float {
+        0% { transform: translate(-10%, -10%) scale(1); }
+        100% { transform: translate(20%, 20%) scale(1.2); }
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 32px;
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .glass-card:hover {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-8px);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      }
+
+      .project-title {
+        background: linear-gradient(to right, #fff, rgba(255,255,255,0.5));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
-  }
-}
-</script>
-</head>
-  <body class="moving-mesh">
+    <script type="importmap">
+    {
+      "imports": {
+        "react/": "https://esm.sh/react@^19.2.4/",
+        "react": "https://esm.sh/react@^19.2.4",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+      }
+    }
+    </script>
+  </head>
+  <body class="custom-scrollbar">
+    <div class="nebula-bg">
+        <div class="blob" style="top: -10%; left: -10%;"></div>
+        <div class="blob" style="bottom: -10%; right: -10%; animation-delay: -5s;"></div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
