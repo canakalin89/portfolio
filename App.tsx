@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
     GithubIcon, 
     ExternalLinkIcon, 
@@ -11,7 +11,8 @@ import {
     StarIcon,
     DeskIcon,
     SheetIcon,
-    ClockIcon
+    ClockIcon,
+    SnowflakeIcon
 } from './components/Icons';
 
 interface Project {
@@ -84,6 +85,39 @@ const initialProjects: Project[] = [
     }
 ];
 
+const Snowfall = () => {
+    const flakes = useMemo(() => {
+        return Array.from({ length: 50 }).map((_, i) => ({
+            id: i,
+            left: `${Math.random() * 100}%`,
+            duration: `${5 + Math.random() * 10}s`,
+            delay: `${Math.random() * 5}s`,
+            size: `${2 + Math.random() * 4}px`,
+            swingDuration: `${2 + Math.random() * 2}s`,
+            opacity: 0.3 + Math.random() * 0.5
+        }));
+    }, []);
+
+    return (
+        <div className="snow-container">
+            {flakes.map((f) => (
+                <div 
+                    key={f.id} 
+                    className="snowflake"
+                    style={{
+                        left: f.left,
+                        animationDuration: `${f.duration}, ${f.swingDuration}`,
+                        animationDelay: `${f.delay}, 0s`,
+                        width: f.size,
+                        height: f.size,
+                        opacity: f.opacity
+                    }}
+                />
+            ))}
+        </div>
+    );
+};
+
 const IconRenderer = ({ name, className }: { name: string, className?: string }) => {
     switch(name) {
         case 'MicIcon': return <MicIcon className={className} />;
@@ -101,6 +135,7 @@ const App: React.FC = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [editingProject, setEditingProject] = useState<Project | null>(null);
+    const [isSnowing, setIsSnowing] = useState(false);
 
     useEffect(() => {
         const handleKey = (e: KeyboardEvent) => {
@@ -111,7 +146,9 @@ const App: React.FC = () => {
     }, []);
 
     return (
-        <div className="min-h-screen max-w-7xl mx-auto px-6 py-20 lg:py-32">
+        <div className="relative min-h-screen max-w-7xl mx-auto px-6 py-20 lg:py-32">
+            {isSnowing && <Snowfall />}
+
             {/* Header */}
             <header className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
                 <div className="max-w-2xl">
@@ -125,6 +162,13 @@ const App: React.FC = () => {
                 </div>
                 
                 <div className="flex gap-4">
+                    <button 
+                        onClick={() => setIsSnowing(!isSnowing)}
+                        className={`w-14 h-14 glass-card flex items-center justify-center transition-all border-white/10 ${isSnowing ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-400' : 'hover:bg-white/10 text-white/70'}`}
+                        title="Kar Yağdır"
+                    >
+                        <SnowflakeIcon className="w-6 h-6" />
+                    </button>
                     <a href="mailto:canakalin59@gmail.com" className="w-14 h-14 glass-card flex items-center justify-center hover:bg-white/10 transition-all border-white/10">
                         <EmailIcon className="w-6 h-6 text-white/70" />
                     </a>
