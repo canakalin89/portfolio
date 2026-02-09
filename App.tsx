@@ -117,7 +117,7 @@ const App: React.FC = () => {
                 <div className="max-w-2xl">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="w-12 h-[1px] bg-indigo-500/50"></div>
-                        <span className="text-[10px] uppercase tracking-[0.4em] font-semibold text-indigo-400">Can Akalın // 2026 Portfolio</span>
+                        <span className="text-[10px] uppercase tracking-[0.4em] font-semibold text-indigo-400">Can Akalın // Portfolio</span>
                     </div>
                     <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8">
                         Dijital <span className="project-title italic">Laboratuvar.</span>
@@ -229,7 +229,7 @@ const App: React.FC = () => {
 
             <footer className="text-center">
                 <p className="text-[10px] font-bold uppercase tracking-[0.5em] text-white/10">
-                    &copy; MMXXVI Aether Core // Crafted for the Future
+                    &copy; Can Akalın // Portfolio
                 </p>
             </footer>
         </div>
