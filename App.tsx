@@ -48,6 +48,15 @@ const initialProjects: Project[] = [
     },
     {
         iconName: 'StarIcon',
+        iconBgColor: 'from-amber-500/20 to-amber-500/0',
+        title: 'Lingodrill',
+        subtitle: 'Aksan ve Tekrar Pratiği',
+        description: 'İngilizce telaffuz ve aksan becerilerini geliştirmek için tasarlanmış, derin öğrenme destekli interaktif tekrar aracı.',
+        tags: ["Accent", "Fluency", "English"],
+        liveUrl: 'https://lingodrill-accent-repetition-mastery-185961838379.us-west1.run.app',
+    },
+    {
+        iconName: 'StarIcon',
         iconBgColor: 'from-emerald-500/20 to-emerald-500/0',
         title: 'Family Career Quest',
         subtitle: '9. Sınıf 4. Ünite',
