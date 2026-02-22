@@ -44,7 +44,7 @@ const initialProjects: Project[] = [
         description: 'Gemini 2.5 Native Audio teknolojisiyle dinleme sınavları için profesyonel TTS çözümü.',
         tags: ["TTS", "Gemini", "Audio"],
         githubUrl: 'https://github.com/canakalin89/kulAQ',
-        liveUrl: 'https://kulaq-185961838379.us-west1.run.app',
+        liveUrl: 'https://kulaq-studio-185961838379.us-west1.run.app',
     },
     {
         iconName: 'StarIcon',
