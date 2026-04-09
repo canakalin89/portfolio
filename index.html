@@ -5,109 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Can Akalın | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      :root {
-        --bg-deep: #030303;
-        --accent: #6366f1;
-      }
-
       body {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        background-color: var(--bg-deep);
-        color: #fff;
+        font-family: 'Inter', sans-serif;
+        background-color: #f8fafc;
+        color: #0f172a;
         margin: 0;
         overflow-x: hidden;
       }
 
-      .nebula-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #030303 100%);
+      .accent-text {
+        color: #4f46e5;
       }
 
-      .blob {
-        position: absolute;
-        width: 600px;
-        height: 600px;
-        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(244, 63, 94, 0.05) 100%);
-        filter: blur(100px);
-        border-radius: 50%;
-        z-index: -1;
-        animation: float 20s infinite alternate;
+      .card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
       }
 
-      @keyframes float {
-        0% { transform: translate(-10%, -10%) scale(1); }
-        100% { transform: translate(20%, 20%) scale(1.2); }
+      .card:hover {
+        box-shadow: 0 12px 40px rgba(79, 70, 229, 0.1);
+        transform: translateY(-4px);
       }
 
-      .glass-card {
-        background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(30px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 32px;
-        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      .tag {
+        background: #eef2ff;
+        color: #4f46e5;
+        border-radius: 99px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        padding: 4px 12px;
       }
 
-      .glass-card:hover {
-        background: rgba(255, 255, 255, 0.04);
-        border-color: rgba(255, 255, 255, 0.15);
-        transform: translateY(-8px);
-        box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      .btn-primary {
+        background: #4f46e5;
+        color: white;
+        border-radius: 12px;
+        padding: 12px 24px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        transition: background 0.2s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
       }
 
-      .project-title {
-        background: linear-gradient(to right, #fff, rgba(255,255,255,0.5));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      .btn-primary:hover {
+        background: #4338ca;
       }
 
-      /* Snowfall Effects */
-      .snow-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 50;
-        overflow: hidden;
-      }
-
-      .snowflake {
-        position: absolute;
-        top: -10%;
+      .btn-ghost {
+        color: #64748b;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 11px 20px;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
         background: white;
-        border-radius: 50%;
-        opacity: 0.8;
-        filter: blur(1px);
-        will-change: transform;
-        animation: fall linear forwards, swing ease-in-out infinite alternate;
       }
 
-      @keyframes fall {
-        to { transform: translateY(110vh); }
+      .btn-ghost:hover {
+        border-color: #4f46e5;
+        color: #4f46e5;
       }
 
-      @keyframes swing {
-        from { margin-left: -20px; }
-        to { margin-left: 20px; }
+      .icon-wrap {
+        background: #eef2ff;
+        border-radius: 14px;
+        padding: 14px;
+        display: inline-flex;
+        color: #4f46e5;
       }
 
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 6px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
+      .divider {
+        height: 1px;
+        background: #e2e8f0;
       }
     </style>
     <script type="importmap">
@@ -121,11 +104,7 @@
     </script>
   <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="custom-scrollbar">
-    <div class="nebula-bg">
-        <div class="blob" style="top: -10%; left: -10%;"></div>
-        <div class="blob" style="bottom: -10%; right: -10%; animation-delay: -5s;"></div>
-    </div>
+  <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

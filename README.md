@@ -1,20 +1,35 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Can Akalın | Portfolio
 
-# Run and deploy your AI Studio app
+Kişisel portfolyo sitem. React + TypeScript + Vite ile geliştirilmiştir.
 
-This contains everything you need to run your app locally.
+## Teknolojiler
 
-View your app in AI Studio: https://ai.studio/apps/447268cc-1ea4-4679-84b8-a54f8d01a8dd
+- React 19 + TypeScript
+- Vite
+- Tailwind CSS (CDN)
 
-## Run Locally
+## Yerel Çalıştırma
 
-**Prerequisites:**  Node.js
+**Gereksinimler:** Node.js
 
+1. Bağımlılıkları yükle:
+   ```bash
+   npm install
+   ```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+2. Geliştirme sunucusunu başlat:
+   ```bash
+   npm run dev
+   ```
+
+## Proje
+
+### ChitIQ — İngilizce Konuşma Asistanı
+Lise öğrencilerinin konuşma sınavlarına hazırlanmasını kolaylaştıran AI tabanlı bir asistan.
+Telaffuz ve akıcılık analizleri sunarak sınav kaygısını azaltır.
+
+🔗 https://chitiq-v2-185961838379.us-west1.run.app
+
+---
+
+© 2026 Can Akalın
