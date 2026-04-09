@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLinkIcon, EmailIcon, InstagramIcon, MicIcon } from './components/Icons';
+import { ExternalLinkIcon, EmailIcon, InstagramIcon, MicIcon, PuzzleIcon } from './components/Icons';
 
 const App: React.FC = () => {
     return (
@@ -46,7 +46,7 @@ const App: React.FC = () => {
 
             {/* Project */}
             <main className="max-w-3xl mx-auto px-6 py-16">
-                <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-8">Proje</h2>
+                <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-8">Projeler</h2>
 
                 <div className="card p-8">
                     <div className="flex items-start gap-5 mb-6">
@@ -80,6 +80,50 @@ const App: React.FC = () => {
                         >
                             <ExternalLinkIcon className="w-4 h-4" />
                             Uygulamayı Aç
+                        </a>
+                    </div>
+                </div>
+
+                {/* Gelişim Raporu Asistanı */}
+                <div className="card p-8 mt-6">
+                    <div className="flex items-start gap-5 mb-6">
+                        <div className="icon-wrap">
+                            <PuzzleIcon className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <h3 className="text-xl font-bold text-slate-900 mb-1">Gelişim Raporu Asistanı</h3>
+                            <p className="text-sm font-medium accent-text">Chrome Uzantısı</p>
+                        </div>
+                    </div>
+
+                    <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                        Gelişim raporu formlarını not tabanlı veya manuel olarak otomatik doldurur ve temizler.
+                        Öğretmenler için zaman kazandıran bir Chrome uzantısı. Giriş gerektirmez.
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 mb-8">
+                        {['Chrome', 'EduTech', 'Otomasyon'].map(tag => (
+                            <span key={tag} className="tag">{tag}</span>
+                        ))}
+                    </div>
+
+                    <div className="flex gap-3">
+                        <a
+                            href="https://chromewebstore.google.com/detail/geli%C5%9Fim-raporu-asistan%C4%B1/ljcjidfmpfnilniagebhccolaidkpogb"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="btn-primary"
+                        >
+                            <ExternalLinkIcon className="w-4 h-4" />
+                            Chrome'a Ekle
+                        </a>
+                        <a
+                            href="https://github.com/canakalin89/gelisim-raporu-asistani"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="btn-ghost"
+                        >
+                            GitHub
                         </a>
                     </div>
                 </div>
