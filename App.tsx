@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLinkIcon, EmailIcon, InstagramIcon, MicIcon, PuzzleIcon } from './components/Icons';
+import { ExternalLinkIcon, EmailIcon, InstagramIcon, MicIcon, PuzzleIcon, BookOpenIcon } from './components/Icons';
 
 const App: React.FC = () => {
     return (
@@ -119,6 +119,50 @@ const App: React.FC = () => {
                         </a>
                         <a
                             href="https://github.com/canakalin89/gelisim-raporu-asistani"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="btn-ghost"
+                        >
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+
+                {/* Atatürk İlke ve İnkılapları Panosu */}
+                <div className="card p-8 mt-6">
+                    <div className="flex items-start gap-5 mb-6">
+                        <div className="icon-wrap">
+                            <BookOpenIcon className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <h3 className="text-xl font-bold text-slate-900 mb-1">Atatürk İlke ve İnkılapları Panosu</h3>
+                            <p className="text-sm font-medium accent-text">Dijital Okul Panosu</p>
+                        </div>
+                    </div>
+
+                    <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                        Atatürk'ün ilke ve inkılaplarını görsel bir zaman çizelgesiyle sunan interaktif okul panosu.
+                        Canlı saat, Ken Burns efekti, Türkçe sesli okuma (TTS) ve kiosk modu ile sınıf ekranlarına özel tasarlandı.
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 mb-8">
+                        {['Tarih', 'EduTech', 'Kiosk', 'TTS'].map(tag => (
+                            <span key={tag} className="tag">{tag}</span>
+                        ))}
+                    </div>
+
+                    <div className="flex gap-3">
+                        <a
+                            href="https://ata1923.netlify.app"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="btn-primary"
+                        >
+                            <ExternalLinkIcon className="w-4 h-4" />
+                            Panoyu Aç
+                        </a>
+                        <a
+                            href="https://github.com/canakalin89/ata_pano"
                             target="_blank"
                             rel="noreferrer"
                             className="btn-ghost"
