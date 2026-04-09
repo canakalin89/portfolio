@@ -73,7 +73,7 @@ const App: React.FC = () => {
 
                     <div className="flex gap-3">
                         <a
-                            href="https://chitiq-v2-185961838379.us-west1.run.app"
+                            href="https://chitiq.netlify.app"
                             target="_blank"
                             rel="noreferrer"
                             className="btn-primary"
