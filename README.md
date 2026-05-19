@@ -1,6 +1,8 @@
 # Can Akalın | Portfolio
 
-Kişisel portfolyo sitem. React + TypeScript + Vite ile geliştirilmiştir.
+Kişisel portfolyo sitesi. React + TypeScript + Vite ile geliştirilmiştir.
+
+Canlı site: https://canhoca.netlify.app/
 
 ## Teknolojiler
 
@@ -22,13 +24,17 @@ Kişisel portfolyo sitem. React + TypeScript + Vite ile geliştirilmiştir.
    npm run dev
    ```
 
-## Proje
+## ChitIQ Bağlantıları
 
-### ChitIQ — İngilizce Konuşma Asistanı
-Lise öğrencilerinin konuşma sınavlarına hazırlanmasını kolaylaştıran AI tabanlı bir asistan.
-Telaffuz ve akıcılık analizleri sunarak sınav kaygısını azaltır.
+### ChitIQ Codex
 
-🔗 https://chitiq-v2-185961838379.us-west1.run.app
+- Uygulama: https://chitiq-codex.vercel.app/
+- GitHub: https://github.com/canakalin89/chitiq_codex
+
+### ChitIQ KC
+
+- Uygulama: https://chitiq-kc.vercel.app/
+- GitHub: https://github.com/canakalin89/chitiq_kc
 
 ---
 

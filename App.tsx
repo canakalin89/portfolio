@@ -1,185 +1,168 @@
 import React from 'react';
-import { ExternalLinkIcon, EmailIcon, InstagramIcon, MicIcon, PuzzleIcon, BookOpenIcon } from './components/Icons';
+import {
+    BookOpenIcon,
+    EmailIcon,
+    ExternalLinkIcon,
+    GithubIcon,
+    InstagramIcon,
+    MicIcon,
+    PuzzleIcon,
+} from './components/Icons';
+
+type Project = {
+    title: string;
+    subtitle: string;
+    description: string;
+    tags: string[];
+    actionLabel: string;
+    liveUrl: string;
+    repoUrl?: string;
+    icon: React.FC<React.SVGProps<SVGSVGElement>>;
+};
+
+const projects: Project[] = [
+    {
+        title: 'ChitIQ Codex',
+        subtitle: 'Konuşma pratiği ve değerlendirme',
+        description:
+            'Öğrencilerin konuşma sınavlarına hazırlanmasını kolaylaştıran, pratik ve geri bildirim odaklı ChitIQ sürümü.',
+        tags: ['AI', 'Speaking', 'Practice'],
+        actionLabel: 'Uygulamayı Aç',
+        liveUrl: 'https://chitiq-codex.vercel.app/',
+        repoUrl: 'https://github.com/canakalin89/chitiq_codex',
+        icon: MicIcon,
+    },
+    {
+        title: 'ChitIQ KC',
+        subtitle: 'Alternatif ChitIQ deneyimi',
+        description:
+            'Konuşma pratiği akışını farklı bir arayüz ve kullanım kurgusuyla sunan ChitIQ varyantı.',
+        tags: ['AI', 'English', 'Vercel'],
+        actionLabel: 'Uygulamayı Aç',
+        liveUrl: 'https://chitiq-kc.vercel.app/',
+        repoUrl: 'https://github.com/canakalin89/chitiq_kc',
+        icon: MicIcon,
+    },
+    {
+        title: 'Gelişim Raporu Asistanı',
+        subtitle: 'Chrome uzantısı',
+        description:
+            'Gelişim raporu formlarını not tabanlı veya manuel olarak otomatik doldurur ve temizler. Giriş gerektirmez.',
+        tags: ['Chrome', 'Otomasyon', 'E-Okul'],
+        actionLabel: "Chrome'a Ekle",
+        liveUrl:
+            'https://chromewebstore.google.com/detail/geli%C5%9Fim-raporu-asistan%C4%B1/ljcjidfmpfnilniagebhccolaidkpogb',
+        repoUrl: 'https://github.com/canakalin89/gelisim-raporu-asistani',
+        icon: PuzzleIcon,
+    },
+    {
+        title: 'Atatürk İlke ve İnkılapları Panosu',
+        subtitle: 'Dijital okul panosu',
+        description:
+            "Atatürk'ün ilke ve inkılaplarını görsel bir zaman çizelgesi, canlı saat, TTS ve kiosk kullanımıyla sunar.",
+        tags: ['Tarih', 'Kiosk', 'TTS'],
+        actionLabel: 'Panoyu Aç',
+        liveUrl: 'https://ata1923.netlify.app',
+        repoUrl: 'https://github.com/canakalin89/ata_pano',
+        icon: BookOpenIcon,
+    },
+];
+
+const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, index }) => {
+    const Icon = project.icon;
+
+    return (
+        <article className="project-card" style={{ animationDelay: `${index * 80}ms` }}>
+            <div className="flex items-start justify-between gap-4">
+                <div className="project-icon">
+                    <Icon className="h-5 w-5" />
+                </div>
+                <span className="project-number">{String(index + 1).padStart(2, '0')}</span>
+            </div>
+
+            <div className="mt-8">
+                <p className="project-subtitle">{project.subtitle}</p>
+                <h3 className="mt-2 text-2xl font-semibold text-slate-50">{project.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-slate-300">{project.description}</p>
+            </div>
+
+            <div className="mt-7 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                    <span key={tag} className="tag">
+                        {tag}
+                    </span>
+                ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+                <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn-primary">
+                    <ExternalLinkIcon className="h-4 w-4" />
+                    {project.actionLabel}
+                </a>
+                {project.repoUrl && (
+                    <a href={project.repoUrl} target="_blank" rel="noreferrer" className="btn-ghost">
+                        <GithubIcon className="h-4 w-4" />
+                        GitHub
+                    </a>
+                )}
+            </div>
+        </article>
+    );
+};
 
 const App: React.FC = () => {
     return (
-        <div className="min-h-screen" style={{ background: '#f8fafc' }}>
-            {/* Nav */}
-            <nav className="max-w-3xl mx-auto px-6 pt-10 pb-4 flex items-center justify-between">
-                <span className="text-sm font-semibold text-slate-400 tracking-wide">can akalın</span>
-                <div className="flex items-center gap-3">
-                    <a
-                        href="mailto:canakalin59@gmail.com"
-                        className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-slate-100 transition-colors text-slate-400 hover:text-indigo-500"
-                        title="E-posta"
-                    >
-                        <EmailIcon className="w-4 h-4" />
+        <div className="min-h-screen bg-[#0b1220] text-slate-100">
+            <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-7">
+                <a href="/" className="text-sm font-semibold tracking-[0.28em] text-slate-300">
+                    CAN HOCA
+                </a>
+                <div className="flex items-center gap-2">
+                    <a href="mailto:canakalin59@gmail.com" className="icon-link" title="E-posta">
+                        <EmailIcon className="h-4 w-4" />
                     </a>
                     <a
                         href="https://www.instagram.com/can_akalin"
                         target="_blank"
                         rel="noreferrer"
-                        className="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-slate-100 transition-colors text-slate-400 hover:text-indigo-500"
+                        className="icon-link"
                         title="Instagram"
                     >
-                        <InstagramIcon className="w-4 h-4" />
+                        <InstagramIcon className="h-4 w-4" />
                     </a>
                 </div>
             </nav>
 
-            {/* Hero */}
-            <header className="max-w-3xl mx-auto px-6 pt-16 pb-20">
-                <div className="mb-4">
-                    <span className="tag">Öğretmen &amp; Geliştirici</span>
+            <header className="mx-auto grid max-w-6xl gap-10 px-6 pb-16 pt-12 md:grid-cols-[1.08fr_0.92fr] md:items-end md:pb-24 md:pt-20">
+                <div>
+                    <p className="eyebrow">Can Akalın</p>
+                    <h1 className="mt-5 max-w-3xl text-5xl font-semibold leading-[1.02] text-white md:text-7xl">
+                        Eğitim için sade, hızlı ve işe yarayan araçlar.
+                    </h1>
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight mb-5">
-                    Eğitim teknolojileri için<br />
-                    <span className="accent-text">AI destekli araçlar</span> üretiyorum.
-                </h1>
-                <p className="text-slate-500 text-lg leading-relaxed max-w-xl">
-                    Lise İngilizce öğretmeni olarak sınıfın içindeki gerçek ihtiyaçları görüyorum
-                    ve bunları çözmek için yazılım geliştiriyorum.
-                </p>
+                <div className="hero-note">
+                    <p>
+                        Sınıf, okul ve öğretmen iş akışları için geliştirilen küçük ama etkili uygulamalar.
+                        Odak noktası net: pratik kullanım, temiz arayüz ve gerçek ihtiyaçlar.
+                    </p>
+                </div>
             </header>
 
-            <div className="divider max-w-3xl mx-auto px-6"></div>
-
-            {/* Project */}
-            <main className="max-w-3xl mx-auto px-6 py-16">
-                <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-8">Projeler</h2>
-
-                <div className="card p-8">
-                    <div className="flex items-start gap-5 mb-6">
-                        <div className="icon-wrap">
-                            <MicIcon className="w-6 h-6" />
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-1">ChitIQ</h3>
-                            <p className="text-sm font-medium accent-text">İngilizce Konuşma Asistanı</p>
-                        </div>
-                    </div>
-
-                    <p className="text-slate-500 text-sm leading-relaxed mb-6">
-                        Lise öğrencilerinin konuşma sınavlarına hazırlanmasını kolaylaştıran AI tabanlı
-                        bir asistan. Telaffuz ve akıcılık analizleri sunarak sınav kaygısını azaltır,
-                        öğrencilere güvenli bir pratik ortamı sağlar.
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mb-8">
-                        {['AI', 'EduTech', 'English', 'Speaking'].map(tag => (
-                            <span key={tag} className="tag">{tag}</span>
-                        ))}
-                    </div>
-
-                    <div className="flex gap-3">
-                        <a
-                            href="https://chitiq.vercel.app"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="btn-primary"
-                        >
-                            <ExternalLinkIcon className="w-4 h-4" />
-                            Uygulamayı Aç
-                        </a>
-                    </div>
+            <main className="mx-auto max-w-6xl px-6 pb-20">
+                <div className="section-heading">
+                    <p>Seçili Projeler</p>
+                    <span>{projects.length} proje</span>
                 </div>
 
-                {/* Gelişim Raporu Asistanı */}
-                <div className="card p-8 mt-6">
-                    <div className="flex items-start gap-5 mb-6">
-                        <div className="icon-wrap">
-                            <PuzzleIcon className="w-6 h-6" />
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-1">Gelişim Raporu Asistanı</h3>
-                            <p className="text-sm font-medium accent-text">Chrome Uzantısı</p>
-                        </div>
-                    </div>
-
-                    <p className="text-slate-500 text-sm leading-relaxed mb-6">
-                        Gelişim raporu formlarını not tabanlı veya manuel olarak otomatik doldurur ve temizler.
-                        Öğretmenler için zaman kazandıran bir Chrome uzantısı. Giriş gerektirmez.
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mb-8">
-                        {['Chrome', 'EduTech', 'Otomasyon'].map(tag => (
-                            <span key={tag} className="tag">{tag}</span>
-                        ))}
-                    </div>
-
-                    <div className="flex gap-3">
-                        <a
-                            href="https://chromewebstore.google.com/detail/geli%C5%9Fim-raporu-asistan%C4%B1/ljcjidfmpfnilniagebhccolaidkpogb"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="btn-primary"
-                        >
-                            <ExternalLinkIcon className="w-4 h-4" />
-                            Chrome'a Ekle
-                        </a>
-                        <a
-                            href="https://github.com/canakalin89/gelisim-raporu-asistani"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="btn-ghost"
-                        >
-                            GitHub
-                        </a>
-                    </div>
-                </div>
-
-                {/* Atatürk İlke ve İnkılapları Panosu */}
-                <div className="card p-8 mt-6">
-                    <div className="flex items-start gap-5 mb-6">
-                        <div className="icon-wrap">
-                            <BookOpenIcon className="w-6 h-6" />
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-1">Atatürk İlke ve İnkılapları Panosu</h3>
-                            <p className="text-sm font-medium accent-text">Dijital Okul Panosu</p>
-                        </div>
-                    </div>
-
-                    <p className="text-slate-500 text-sm leading-relaxed mb-6">
-                        Atatürk'ün ilke ve inkılaplarını görsel bir zaman çizelgesiyle sunan interaktif okul panosu.
-                        Canlı saat, Ken Burns efekti, Türkçe sesli okuma (TTS) ve kiosk modu ile sınıf ekranlarına özel tasarlandı.
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mb-8">
-                        {['Tarih', 'EduTech', 'Kiosk', 'TTS'].map(tag => (
-                            <span key={tag} className="tag">{tag}</span>
-                        ))}
-                    </div>
-
-                    <div className="flex gap-3">
-                        <a
-                            href="https://ata1923.netlify.app"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="btn-primary"
-                        >
-                            <ExternalLinkIcon className="w-4 h-4" />
-                            Panoyu Aç
-                        </a>
-                        <a
-                            href="https://github.com/canakalin89/ata_pano"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="btn-ghost"
-                        >
-                            GitHub
-                        </a>
-                    </div>
-                </div>
+                <section className="mt-6 grid gap-4 md:grid-cols-2">
+                    {projects.map((project, index) => (
+                        <ProjectCard key={project.title} project={project} index={index} />
+                    ))}
+                </section>
             </main>
 
-            <div className="divider max-w-3xl mx-auto px-6"></div>
-
-            {/* Footer */}
-            <footer className="max-w-3xl mx-auto px-6 py-10 text-center">
-                <p className="text-xs text-slate-400">
-                    &copy; 2026 Can Akalın
-                </p>
+            <footer className="border-t border-white/10 px-6 py-8 text-center text-xs text-slate-500">
+                &copy; 2026 Can Akalın
             </footer>
         </div>
     );
