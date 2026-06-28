@@ -55,6 +55,28 @@ const projects: Project[] = [
         icon: PuzzleIcon,
     },
     {
+        title: 'e-Okul Kolay Not Girişi',
+        subtitle: 'Chrome uzantısı',
+        description:
+            "Excel'den kopyalanan notları e-Okul sistemine toplu olarak yapıştırmayı sağlar. Yazılı, dinleme, konuşma, performans ve proje notlarını destekler.",
+        tags: ['Chrome', 'e-Okul', 'Otomasyon'],
+        actionLabel: "Chrome'a Ekle",
+        liveUrl:
+            'https://chromewebstore.google.com/detail/e-okul-kolay-not-giri%C5%9Fi/lpaoecjpkjpppnpcihejkhkffpnbcmbm',
+        icon: PuzzleIcon,
+    },
+    {
+        title: 'e-Okul Oturum Koruyucu',
+        subtitle: 'Chrome uzantısı',
+        description:
+            'e-Okul ve MEBBİS sistemlerinde uzun form doldurma sırasında oturumun düşmesini önler. Hafif, gizlilik odaklı çalışır.',
+        tags: ['Chrome', 'e-Okul', 'MEBBİS'],
+        actionLabel: "Chrome'a Ekle",
+        liveUrl:
+            'https://chromewebstore.google.com/detail/e-okul-oturum-koruyucu/ehjkenpogkehihbildjheldefddobbkm',
+        icon: PuzzleIcon,
+    },
+    {
         title: 'Atatürk İlke ve İnkılapları Panosu',
         subtitle: 'Dijital okul panosu',
         description:

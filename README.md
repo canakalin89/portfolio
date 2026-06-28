@@ -26,6 +26,18 @@ E-Okul gelişim raporu formlarını hızlıca doldurmaya yardımcı olan Chrome 
 - Chrome Web Store: https://chromewebstore.google.com/detail/geli%C5%9Fim-raporu-asistan%C4%B1/ljcjidfmpfnilniagebhccolaidkpogb
 - GitHub: https://github.com/canakalin89/gelisim-raporu-asistani
 
+### e-Okul Kolay Not Girişi
+
+Excel'den kopyalanan notları e-Okul sistemine toplu olarak yapıştırmayı sağlayan Chrome uzantısı.
+
+- Chrome Web Store: https://chromewebstore.google.com/detail/e-okul-kolay-not-giri%C5%9Fi/lpaoecjpkjpppnpcihejkhkffpnbcmbm
+
+### e-Okul Oturum Koruyucu
+
+e-Okul ve MEBBİS sistemlerinde oturum zaman aşımını önleyen Chrome uzantısı.
+
+- Chrome Web Store: https://chromewebstore.google.com/detail/e-okul-oturum-koruyucu/ehjkenpogkehihbildjheldefddobbkm
+
 ### Atatürk İlke ve İnkılapları Panosu
 
 Okul ekranları için hazırlanmış interaktif dijital pano.
