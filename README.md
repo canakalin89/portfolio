@@ -13,12 +13,11 @@ Konuşma pratiği ve değerlendirme akışına odaklanan ChitIQ sürümü.
 - Uygulama: https://chitiq-codex.vercel.app/
 - GitHub: https://github.com/canakalin89/chitiq_codex
 
-### ChitIQ KC
+### PikselPano
 
-ChitIQ için alternatif arayüz ve kullanım kurgusu sunan sürüm.
+Okul koridorları ve sınıflar için tasarlanmış dijital pano uygulaması.
 
-- Uygulama: https://chitiq-kc.vercel.app/
-- GitHub: https://github.com/canakalin89/chitiq_kc
+- Site: https://www.pikselpano.com
 
 ### Gelişim Raporu Asistanı
 
