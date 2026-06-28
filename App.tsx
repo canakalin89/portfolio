@@ -93,7 +93,7 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
     const Icon = project.icon;
 
     return (
-        <article className="project-card" style={{ animationDelay: `${index * 80}ms` }}>
+        <article className="project-card">
             <div className="flex items-start justify-between gap-4">
                 <div className="project-icon">
                     <Icon className="h-5 w-5" />
@@ -101,31 +101,33 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
                 <span className="project-number">{String(index + 1).padStart(2, '0')}</span>
             </div>
 
-            <div className="mt-8">
+            <div className="card-body mt-6">
                 <p className="project-subtitle">{project.subtitle}</p>
-                <h3 className="mt-2 text-2xl font-semibold text-slate-50">{project.title}</h3>
-                <p className="mt-4 text-sm leading-7 text-slate-300">{project.description}</p>
+                <h3 className="mt-2 text-xl font-bold text-white sm:text-2xl">{project.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-400">{project.description}</p>
             </div>
 
-            <div className="mt-7 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                    <span key={tag} className="tag">
-                        {tag}
-                    </span>
-                ))}
-            </div>
+            <div className="mt-auto pt-6">
+                <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                        <span key={tag} className="tag">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-                <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn-primary">
-                    <ExternalLinkIcon className="h-4 w-4" />
-                    {project.actionLabel}
-                </a>
-                {project.repoUrl && (
-                    <a href={project.repoUrl} target="_blank" rel="noreferrer" className="btn-ghost">
-                        <GithubIcon className="h-4 w-4" />
-                        GitHub
+                <div className="mt-5 flex flex-wrap gap-3">
+                    <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn-primary">
+                        <ExternalLinkIcon className="h-4 w-4" />
+                        {project.actionLabel}
                     </a>
-                )}
+                    {project.repoUrl && (
+                        <a href={project.repoUrl} target="_blank" rel="noreferrer" className="btn-ghost">
+                            <GithubIcon className="h-4 w-4" />
+                            GitHub
+                        </a>
+                    )}
+                </div>
             </div>
         </article>
     );
@@ -133,31 +135,31 @@ const ProjectCard: React.FC<{ project: Project; index: number }> = ({ project, i
 
 const App: React.FC = () => {
     return (
-        <div className="min-h-screen bg-[#0b1220] text-slate-100">
-            <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-7">
-                <a href="/" className="text-sm font-semibold tracking-[0.28em] text-slate-300">
-                    CAN HOCA
-                </a>
-                <div className="flex items-center gap-2">
-                    <a href="mailto:canakalin59@gmail.com" className="icon-link" title="E-posta">
-                        <EmailIcon className="h-4 w-4" />
-                    </a>
-                    <a
-                        href="https://www.instagram.com/can_akalin"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="icon-link"
-                        title="Instagram"
-                    >
-                        <InstagramIcon className="h-4 w-4" />
-                    </a>
+        <div className="min-h-screen text-slate-100">
+            <nav className="nav">
+                <div className="nav-inner">
+                    <a href="/" className="nav-brand">CAN HOCA</a>
+                    <div className="nav-links">
+                        <a href="mailto:canakalin59@gmail.com" className="icon-link" title="E-posta">
+                            <EmailIcon className="h-4 w-4" />
+                        </a>
+                        <a
+                            href="https://www.instagram.com/can_akalin"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="icon-link"
+                            title="Instagram"
+                        >
+                            <InstagramIcon className="h-4 w-4" />
+                        </a>
+                    </div>
                 </div>
             </nav>
 
-            <header className="mx-auto grid max-w-6xl gap-10 px-6 pb-16 pt-12 md:grid-cols-[1.08fr_0.92fr] md:items-end md:pb-24 md:pt-20">
+            <header className="container hero">
                 <div>
                     <p className="eyebrow">Can Akalın</p>
-                    <h1 className="mt-5 max-w-3xl text-5xl font-semibold leading-[1.02] text-white md:text-7xl">
+                    <h1 className="hero-title mt-5 max-w-3xl text-4xl font-extrabold sm:text-5xl md:text-7xl">
                         Eğitim için sade, hızlı ve işe yarayan araçlar.
                     </h1>
                 </div>
@@ -169,20 +171,20 @@ const App: React.FC = () => {
                 </div>
             </header>
 
-            <main className="mx-auto max-w-6xl px-6 pb-20">
+            <main className="container" style={{ paddingBottom: '6rem' }}>
                 <div className="section-heading">
                     <p>Seçili Projeler</p>
                     <span>{projects.length} proje</span>
                 </div>
 
-                <section className="mt-6 grid gap-4 md:grid-cols-2">
+                <section className="projects-grid">
                     {projects.map((project, index) => (
                         <ProjectCard key={project.title} project={project} index={index} />
                     ))}
                 </section>
             </main>
 
-            <footer className="border-t border-white/10 px-6 py-8 text-center text-xs text-slate-500">
+            <footer className="footer">
                 &copy; 2026 Can Akalın
             </footer>
         </div>
