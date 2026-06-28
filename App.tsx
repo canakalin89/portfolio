@@ -33,15 +33,14 @@ const projects: Project[] = [
         icon: MicIcon,
     },
     {
-        title: 'ChitIQ KC',
-        subtitle: 'Alternatif ChitIQ deneyimi',
+        title: 'PikselPano',
+        subtitle: 'Dijital okul panosu',
         description:
-            'Konuşma pratiği akışını farklı bir arayüz ve kullanım kurgusuyla sunan ChitIQ varyantı.',
-        tags: ['AI', 'English', 'Vercel'],
-        actionLabel: 'Uygulamayı Aç',
-        liveUrl: 'https://chitiq-kc.vercel.app/',
-        repoUrl: 'https://github.com/canakalin89/chitiq_kc',
-        icon: MicIcon,
+            'Okul koridorları ve sınıflar için tasarlanmış, içeriklerin kolayca yönetildiği dijital pano uygulaması.',
+        tags: ['Dijital Pano', 'Okul', 'Web'],
+        actionLabel: 'Siteyi Aç',
+        liveUrl: 'https://www.pikselpano.com',
+        icon: BookOpenIcon,
     },
     {
         title: 'Gelişim Raporu Asistanı',
